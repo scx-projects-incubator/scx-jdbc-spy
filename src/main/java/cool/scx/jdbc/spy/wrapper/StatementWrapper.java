@@ -1,6 +1,5 @@
 package cool.scx.jdbc.spy.wrapper;
 
-import cool.scx.common.util.ArrayUtils;
 import cool.scx.jdbc.spy.SpyEventListener;
 import cool.scx.jdbc.spy.SpyWrapper;
 
