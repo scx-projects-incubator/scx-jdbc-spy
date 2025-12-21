@@ -15,6 +15,14 @@ public class StatementWrapper<T extends Statement> extends SpyWrapper<T> impleme
         super(delegate, eventListener);
     }
 
+    private static long[] toLongArray(int... intArray) {
+        var longArray = new long[intArray.length];
+        for (int i = 0; i < intArray.length; i = i + 1) {
+            longArray[i] = intArray[i];
+        }
+        return longArray;
+    }
+
     @Override
     public ResultSet getResultSet() throws SQLException {
         SQLException e = null;
@@ -57,7 +65,7 @@ public class StatementWrapper<T extends Statement> extends SpyWrapper<T> impleme
             e = s;
             throw e;
         } finally {
-            eventListener.onAfterExecuteBatch(delegate, System.nanoTime() - start, updateCounts == null ? null : ArrayUtils.toLongArray(updateCounts), e);
+            eventListener.onAfterExecuteBatch(delegate, System.nanoTime() - start, updateCounts == null ? null : toLongArray(updateCounts), e);
         }
     }
 
